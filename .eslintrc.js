@@ -5,10 +5,11 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  // plugins: ['@typescript-eslint/eslint-plugin'], // Don't need formatting error everywhere setup a script to run it on commit
   extends: [
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
+    // 'plugin:prettier/recommended',
+    'prettier',
   ],
   root: true,
   env: {
