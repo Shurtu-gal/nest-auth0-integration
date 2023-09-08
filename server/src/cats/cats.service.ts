@@ -1,16 +1,16 @@
-import { Injectable } from "@nestjs/common";
-import { Observable, concatMap, interval, of, take } from "rxjs";
-import { CatsRepository } from "./repository/cats.repository";
-import { CreateCatDto } from "./dto/create-cat.dto";
-import { Cat } from "./entities/cat.entity";
+import { Injectable } from '@nestjs/common';
+import { Observable, concatMap, interval, of, take } from 'rxjs';
+import { CatsRepository } from './repository/cats.repository';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { Cat } from './entities/cat.entity';
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly catsRepo: CatsRepository) {  }
+  constructor(private readonly catsRepo: CatsRepository) {}
 
   getList() {
     return this.catsRepo.getList();
-  };
+  }
 
   getOneByOne(): Observable<any> {
     return interval(1000).pipe(
@@ -33,7 +33,7 @@ export class CatsService {
 
     return {
       message: 'Cat has been created successfully',
-    }
+    };
   }
 
   update(id: number, cat) {
@@ -47,6 +47,8 @@ export class CatsService {
   }
 
   getByCharacteristics(characteristics: string, value: string) {
-    return this.catsRepo.getList().filter((cat) => cat[characteristics].toString() === value);
+    return this.catsRepo
+      .getList()
+      .filter((cat) => cat[characteristics].toString() === value);
   }
-};
+}

@@ -1,9 +1,18 @@
-import { Body, Controller, ForbiddenException, Get, HttpCode, Param, Post, UseFilters } from "@nestjs/common";
-import { CatsService } from "./cats.service";
+import {
+  Body,
+  Controller,
+  ForbiddenException,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  UseFilters,
+} from '@nestjs/common';
+import { CatsService } from './cats.service';
 // import { Request } from "express";
-import { Observable } from "rxjs";
-import { CreateCatDto } from "./dto/create-cat.dto";
-import { HttpExceptionFilter } from "../utils/exception/http-exception.filter";
+import { Observable } from 'rxjs';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { HttpExceptionFilter } from '../utils/exception/http-exception.filter';
 
 @Controller('cats')
 export class CatsController {
@@ -20,7 +29,7 @@ export class CatsController {
   }
 
   @Get('/:id')
-  getCatById(@Param() param: { id: string}) {
+  getCatById(@Param() param: { id: string }) {
     return this.catsService.getById(+param.id);
   }
 
@@ -51,4 +60,4 @@ export class CatsController {
   createCatWithFilter() {
     throw new ForbiddenException();
   }
-};
+}

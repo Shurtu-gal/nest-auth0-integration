@@ -1,4 +1,4 @@
-import { randomUUID } from "crypto";
+import { randomUUID } from 'crypto';
 
 export class Cat {
   id: number;
@@ -9,6 +9,6 @@ export class Cat {
   constructor(partial: Partial<Cat>) {
     Object.assign(this, partial);
 
-    this.id = parseInt(randomUUID().split('-')[0]); 
+    this.id = parseInt(randomUUID().split('-')[0]);
   }
 }

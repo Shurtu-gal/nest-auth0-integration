@@ -1,4 +1,4 @@
-import { Cat } from "../entities/cat.entity";
+import { Cat } from '../entities/cat.entity';
 
 export class CatsRepository {
   cats: Cat[] = [
