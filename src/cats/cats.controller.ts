@@ -1,8 +1,9 @@
-import { Body, Controller, Get, HttpCode, Param, Post } from "@nestjs/common";
+import { Body, Controller, ForbiddenException, Get, HttpCode, Param, Post, UseFilters } from "@nestjs/common";
 import { CatsService } from "./cats.service";
 // import { Request } from "express";
 import { Observable } from "rxjs";
 import { CreateCatDto } from "./dto/create-cat.dto";
+import { HttpExceptionFilter } from "../utils/exception/http-exception.filter";
 
 @Controller('cats')
 export class CatsController {
@@ -42,5 +43,12 @@ export class CatsController {
   @HttpCode(201)
   createCat(@Body() cat: CreateCatDto) {
     return this.catsService.create(cat);
+  }
+
+  @Post('/filter')
+  @HttpCode(201)
+  @UseFilters(HttpExceptionFilter) // Enable Dependency Injection
+  createCatWithFilter() {
+    throw new ForbiddenException();
   }
 };
