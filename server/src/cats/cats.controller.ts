@@ -1,26 +1,31 @@
 import {
   Body,
   Controller,
+  Delete,
   ForbiddenException,
   Get,
   HttpCode,
   Param,
   Post,
+  Query,
   UseFilters,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 // import { Request } from "express";
 import { Observable } from 'rxjs';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { HttpExceptionFilter } from '../utils/exception/http-exception.filter';
+import { TransformInterceptor } from '../utils/interceptor/transformer.interceptor';
 
 @Controller('cats')
+@UseInterceptors(TransformInterceptor)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  getListOfCats() {
-    return this.catsService.getList();
+  getListOfCats(@Query() queryParams: { page: string; perPage: string, sort: string[], filter: string }) {
+    return this.catsService.getList(queryParams);
   }
 
   @Get('/one-by-one')
@@ -30,7 +35,7 @@ export class CatsController {
 
   @Get('/:id')
   getCatById(@Param() param: { id: string }) {
-    return this.catsService.getById(+param.id);
+    return this.catsService.getById(param.id);
   }
 
   @Get('/breeds/:breed')
@@ -59,5 +64,10 @@ export class CatsController {
   @UseFilters(HttpExceptionFilter) // Enable Dependency Injection
   createCatWithFilter() {
     throw new ForbiddenException();
+  }
+
+  @Delete('/:id')
+  deleteCat(@Param('id') id: string) {
+    return this.catsService.delete(id);
   }
 }

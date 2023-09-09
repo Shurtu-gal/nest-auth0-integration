@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 
 export class Cat {
-  id: number;
+  id: string;
   name: string;
   age: number;
   breed: string;
@@ -9,6 +9,9 @@ export class Cat {
   constructor(partial: Partial<Cat>) {
     Object.assign(this, partial);
 
-    this.id = parseInt(randomUUID().split('-')[0]);
+    // Create a random id as mongo does if not provided
+    if (!this.id) {
+      this.id = randomUUID();
+    }
   }
 }
