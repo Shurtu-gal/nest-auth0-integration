@@ -159,7 +159,7 @@ const crudProvider = (
     return httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: 'PATCH',
       body: JSON.stringify(data),
-    }).then(({ json }) => ({ data: json }));
+    }).then(({ json }) => json);
   },
 
   updateMany: (resource, params) =>
@@ -171,7 +171,7 @@ const crudProvider = (
         }),
       ),
     ).then((responses) => ({
-      data: responses.map(({ json }) => json),
+      data: responses.map(({ json }) => json.data),
     })),
 
   create: (resource, params) => {
@@ -184,7 +184,7 @@ const crudProvider = (
   delete: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: 'DELETE',
-    }).then(({ json }) => ({ data: { ...json, id: params.id } })),
+    }).then(({ json }) => json),
 
   deleteMany: (resource, params) =>
     Promise.all(
@@ -193,7 +193,7 @@ const crudProvider = (
           method: 'DELETE',
         }),
       ),
-    ).then((responses) => ({ data: responses.map(({ json }) => json) })),
+    ).then((responses) => ({ data: responses.map(({ json }) => json.data) })),
 });
 
 export default crudProvider('http://localhost:3001');

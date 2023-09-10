@@ -24,48 +24,50 @@ const Dashboard = () => (
         </Typography>
         <Box maxWidth="40em">
           <Typography variant="body1" component="p" gutterBottom>
-          This is the admin panel of an for Auth0. Feel free to explore and modify the data - it's local to your computer, and will reset each time you reload.
+            This is the admin panel of an for Auth0. Feel free to explore and
+            modify the data - it's local to your computer, and will reset each
+            time you reload.
           </Typography>
         </Box>
         <CardActions
-                        sx={{
-                            padding: { xs: 0, xl: null },
-                            flexWrap: { xs: 'wrap', xl: null },
-                            '& a': {
-                                marginTop: { xs: '1em', xl: null },
-                                marginLeft: { xs: '0!important', xl: null },
-                                marginRight: { xs: '1em', xl: null },
-                            },
-                        }}
-                    >
-                        <Button
-                            variant="contained"
-                            href="https://marmelab.com/react-admin"
-                            startIcon={<HomeIcon />}
-                        >
-                            Go to the home page
-                        </Button>
-                        <Button
-                            variant="contained"
-                            href="https://github.com/marmelab/react-admin/tree/master/examples/demo"
-                            startIcon={<CodeIcon />}
-                        >
-                            See the source code
-                        </Button>
-                    </CardActions>
-                </Box>
-                <Box
-                    display={{ xs: 'none', sm: 'none', md: 'block' }}
-                    sx={{
-                        background: `url(${publishArticleImage}) top right / cover`,
-                        marginLeft: 'auto',
-                    }}
-                    width="16em"
-                    height="9em"
-                    overflow="hidden"
-                />
-            </Box>
-        </Card>
+          sx={{
+            padding: { xs: 0, xl: null },
+            flexWrap: { xs: 'wrap', xl: null },
+            '& a': {
+              marginTop: { xs: '1em', xl: null },
+              marginLeft: { xs: '0!important', xl: null },
+              marginRight: { xs: '1em', xl: null },
+            },
+          }}
+        >
+          <Button
+            variant="contained"
+            href="https://github.com/Shurtu-gal"
+            startIcon={<HomeIcon />}
+          >
+            Go to the home page
+          </Button>
+          <Button
+            variant="contained"
+            href="https://github.com/Shurtu-gal/learn-nest-rest"
+            startIcon={<CodeIcon />}
+          >
+            See the source code
+          </Button>
+        </CardActions>
+      </Box>
+      <Box
+        display={{ xs: 'none', sm: 'none', md: 'block' }}
+        sx={{
+          background: `url(${publishArticleImage}) top right / cover`,
+          marginLeft: 'auto',
+        }}
+        width="16em"
+        height="9em"
+        overflow="hidden"
+      />
+    </Box>
+  </Card>
 );
 
 export default Dashboard;
