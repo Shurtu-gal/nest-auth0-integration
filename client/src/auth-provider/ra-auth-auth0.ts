@@ -11,6 +11,7 @@ export const client = new Auth0Client({
   cacheLocation: 'localstorage',
   authorizationParams: {
     audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+    scope: import.meta.env.VITE_AUTH0_SCOPE,
   },
   useRefreshTokens: true,
 });
@@ -29,7 +30,7 @@ export const Auth0AuthProvider: AuthProvider = {
   logout: async () => {
     client.logout({
       logoutParams: {
-        returnTo: import.meta.env.VITE_LOGOUT_REDIRECT_URI,
+        returnTo: import.meta.env.VITE_AUTH0_LOGOUT_REDIRECT_URI,
       },
     });
 

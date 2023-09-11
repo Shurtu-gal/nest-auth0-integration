@@ -197,4 +197,4 @@ const crudProvider = (
     ).then((responses) => ({ data: responses.map(({ json }) => json.data) })),
 });
 
-export default crudProvider('http://localhost:3001');
+export default crudProvider(import.meta.env.VITE_API_URL);
