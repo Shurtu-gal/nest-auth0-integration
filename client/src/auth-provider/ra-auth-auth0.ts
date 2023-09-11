@@ -18,7 +18,7 @@ export const client = new Auth0Client({
 
 export const Auth0AuthProvider: AuthProvider = {
   login: async () => {
-    await client.loginWithRedirect({
+    await client.loginWithPopup({
       authorizationParams: {
         redirect_uri: import.meta.env.VITE_AUTH0_REDIRECT_URI,
       },
@@ -28,7 +28,7 @@ export const Auth0AuthProvider: AuthProvider = {
   },
 
   logout: async () => {
-    client.logout({
+    await client.logout({
       logoutParams: {
         returnTo: import.meta.env.VITE_AUTH0_LOGOUT_REDIRECT_URI,
       },
@@ -45,11 +45,7 @@ export const Auth0AuthProvider: AuthProvider = {
 
     localStorage.setItem(PreviousLocationStorageKey, window.location.href);
 
-    return client.loginWithRedirect({
-      authorizationParams: {
-        redirect_uri: import.meta.env.VITE_AUTH0_REDIRECT_URI,
-      },
-    });
+    return Promise.reject();
   },
 
   checkError: async ({ status }) => {
