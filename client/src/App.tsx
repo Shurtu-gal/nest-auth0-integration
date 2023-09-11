@@ -5,10 +5,11 @@ import { lightTheme, darkTheme } from './theme/theme';
 import Dashboard from './pages/Dashboard';
 import Layout from './layout/Layout';
 import { Auth0AuthProvider } from './auth-provider/ra-auth-auth0';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Admin
         dataProvider={dataProvider}
         authProvider={Auth0AuthProvider}
@@ -27,7 +28,7 @@ function App() {
           create={CatsCreate}
         />
       </Admin>
-    </>
+    </BrowserRouter>
   );
 }
 

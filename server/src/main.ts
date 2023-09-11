@@ -1,13 +1,13 @@
-import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
-import dotenv from "dotenv";
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const allowlist = ["http://localhost:5173", "http://localhost:3001"];
+const allowlist = ['http://localhost:5173', 'http://localhost:3001'];
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
-  if (allowlist.indexOf(req.header("Origin")) !== -1) {
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
     corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
   } else {
     corsOptions = { origin: false }; // disable CORS for this request

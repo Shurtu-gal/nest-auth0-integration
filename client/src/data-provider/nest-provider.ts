@@ -7,6 +7,7 @@ import {
 import { omitBy } from 'lodash';
 import { DataProvider, fetchUtils } from 'ra-core';
 import { stringify } from 'query-string';
+import { CustomHttpClient } from './httpClient';
 
 /**
  * Maps react-admin queries to a nestjsx/crud powered REST API
@@ -77,7 +78,7 @@ const mergeEncodedQueries = (...encodedQueries: string[]): string =>
 
 const crudProvider = (
   apiUrl: string,
-  httpClient = fetchUtils.fetchJson,
+  httpClient = CustomHttpClient,
 ): DataProvider => ({
   getList: (resource, params) => {
     const { page, perPage } = params.pagination;

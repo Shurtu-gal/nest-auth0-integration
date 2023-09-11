@@ -5,7 +5,7 @@ import {
   UserIdentity,
 } from 'react-admin';
 
-const client = new Auth0Client({
+export const client = new Auth0Client({
   domain: import.meta.env.VITE_AUTH0_DOMAIN,
   clientId: import.meta.env.VITE_AUTH0_CLIENT_ID,
   cacheLocation: 'localstorage',
@@ -44,7 +44,11 @@ export const Auth0AuthProvider: AuthProvider = {
 
     localStorage.setItem(PreviousLocationStorageKey, window.location.href);
 
-    return Promise.reject();
+    return client.loginWithRedirect({
+      authorizationParams: {
+        redirect_uri: import.meta.env.VITE_AUTH0_REDIRECT_URI,
+      },
+    });
   },
 
   checkError: async ({ status }) => {
@@ -54,12 +58,11 @@ export const Auth0AuthProvider: AuthProvider = {
   },
 
   getPermissions: async () => {
-    // if (!(await client.isAuthenticated())) {
-    //     return;
-    // }
+    if (!(await client.isAuthenticated())) {
+      return;
+    }
 
-    // const claims = await client.getIdTokenClaims();
-    // console.log(claims);
+    await client.getIdTokenClaims();
     Promise.resolve();
   },
 
@@ -84,12 +87,10 @@ export const Auth0AuthProvider: AuthProvider = {
 
   handleCallback: async () => {
     const query = window.location.search;
+    console.log(import.meta.env.VITE_AUTH0_REDIRECT_URI);
     if (query.includes('code=') && query.includes('state=')) {
-      // throw new Error('Failed to handle login callback.');
       try {
-        const result = await client.handleRedirectCallback(window.location.href);
-        console.log(result);
-        localStorage.removeItem(PreviousLocationStorageKey);
+        await client.handleRedirectCallback();
         return;
       } catch (error) {
         throw new Error('Failed to handle login callback: ' + error);

@@ -1,0 +1,17 @@
+{
+  "name": "nest-auth0-integration",
+  "version": "1.0.0",
+  "description": "Integrates Auth0 with NestJS and React-Admin",
+  "main": "DockerFile",
+  "repository": "git@github.com:Shurtu-gal/learn-nest-rest.git",
+  "author": "Ashish Padhy <100484401+Shurtu-gal@users.noreply.github.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1"
+  }
+}

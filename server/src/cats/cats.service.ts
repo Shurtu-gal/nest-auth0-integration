@@ -1,9 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { Observable, concatMap, interval, of, take } from "rxjs";
-import { CatsRepository } from "./repository/cats.repository";
-import { CreateCatDto } from "./dto/create-cat.dto";
-import { Cat } from "./entities/cat.entity";
-import { UpdateCatDto } from "./dto/update-cat.dto";
+import { Injectable } from '@nestjs/common';
+import { Observable, concatMap, interval, of, take } from 'rxjs';
+import { CatsRepository } from './repository/cats.repository';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { Cat } from './entities/cat.entity';
+import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()
 export class CatsService {
@@ -23,9 +23,9 @@ export class CatsService {
     const sortedList = sort
       ? list.sort((a, b) => {
           for (const sortField of sort) {
-            const [field, order] = sortField.split(",");
-            if (a[field] < b[field]) return order === "ASC" ? -1 : 1;
-            if (a[field] > b[field]) return order === "ASC" ? 1 : -1;
+            const [field, order] = sortField.split(',');
+            if (a[field] < b[field]) return order === 'ASC' ? -1 : 1;
+            if (a[field] > b[field]) return order === 'ASC' ? 1 : -1;
           }
           return 0;
         })
